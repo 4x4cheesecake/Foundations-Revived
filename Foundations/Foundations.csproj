@@ -48,6 +48,9 @@
     <Compile Include="Foundation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Foundation_PM.cfg" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>xcopy $(TargetPath) "D:\KSP\KSP 1.5.1 (Stock)\GameData\Foundations\" /eyir</PostBuildEvent>
