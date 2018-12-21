@@ -8,10 +8,10 @@ namespace Foundations
     class Foundation : PartModule
     {
         [KSPField(isPersistant = true)]
-        public float breakForce;
+        public float breakForce = 500f;
 
         [KSPField(isPersistant = true)]
-        public float breakTorque;
+        public float breakTorque = 500f;
 
         [KSPField(isPersistant = true)]
         private bool isAttached;
@@ -90,17 +90,19 @@ namespace Foundations
             DestroyAttachment();
             CreateAttachment();
         }
-
+        
         public override void OnUpdate()
         {
-            if (!isAttached)
+            if (isAttached)
             {
-                return;
+                Events["AttachEvent"].active = false;
+                Events["DetachEvent"].active = true;
             }
                         
-            Vector3 attachOffset = (fixedObject.transform.position - part.transform.position);
-        }
+            //Vector3 attachOffset = (fixedObject.transform.position - part.transform.position);
 
+        }
+        
         public void OnJointBreak(float force)
         {
             Debug.LogWarning(string.Format("Foundations: OnJointBreak(force = {0}, isAttached = {1})", force, isAttached));

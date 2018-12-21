@@ -35,11 +35,6 @@
       <HintPath>..\..\..\..\..\..\KSP\Lib\151\Assembly-CSharp.dll</HintPath>
     </Reference>
     <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
     <Reference Include="UnityEngine">
       <HintPath>..\..\..\..\..\..\KSP\Lib\151\UnityEngine.dll</HintPath>
     </Reference>
@@ -53,7 +48,8 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>xcopy $(TargetPath) "D:\KSP\KSP 1.5.1 (Stock)\GameData\Foundations\" /eyir
+    <PostBuildEvent>xcopy $(TargetPath) "D:\KSP\KSP 1.5.1 (Stock)\GameData\Foundations\Plugin\" /eyir
+xcopy $(ProjectDir)Foundation_PM.cfg "D:\KSP\KSP 1.5.1 (Stock)\GameData\Foundations\" /y
 xcopy $(TargetPath) $(ProjectDir)GameData\Foundations\Plugin\ /eyir
 xcopy $(ProjectDir)Foundation_PM.cfg $(ProjectDir)GameData\Foundations\ /y</PostBuildEvent>
   </PropertyGroup>
