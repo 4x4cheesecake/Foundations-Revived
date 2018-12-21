@@ -53,6 +53,8 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>xcopy $(TargetPath) "D:\KSP\KSP 1.5.1 (Stock)\GameData\Foundations\" /eyir</PostBuildEvent>
+    <PostBuildEvent>xcopy $(TargetPath) "D:\KSP\KSP 1.5.1 (Stock)\GameData\Foundations\" /eyir
+xcopy $(TargetPath) $(ProjectDir)GameData\Foundations\Plugin\ /eyir
+xcopy $(ProjectDir)Foundation_PM.cfg $(ProjectDir)GameData\Foundations\ /y</PostBuildEvent>
   </PropertyGroup>
 </Project>

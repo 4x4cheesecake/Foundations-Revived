@@ -1,10 +1,6 @@
 ﻿//Originally written by forum user Sparkle: https://forum.kerbalspaceprogram.com/index.php?/profile/91081-sparkle/
 //Link to the original thread: https://forum.kerbalspaceprogram.com/index.php?/topic/51430-plugin-022-wip-foundations-update-alpha-release-02/&tab=comments#comment-739075
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using UnityEngine;
 
 namespace Foundations
@@ -12,10 +8,10 @@ namespace Foundations
     class Foundation : PartModule
     {
         [KSPField(isPersistant = true)]
-        public float breakForce = 500f;
+        public float breakForce;
 
         [KSPField(isPersistant = true)]
-        public float breakTorque = 500f;
+        public float breakTorque;
 
         [KSPField(isPersistant = true)]
         private bool isAttached;
@@ -34,7 +30,7 @@ namespace Foundations
         public void AttachEvent()
         {
             Debug.Log("Foundations: AttachEvent()");
-            //Events["AttachEvent"].guiName = "Attach Foundations";
+            
             if (!part.GroundContact)
             {
                 Debug.Log("Foundations: No ground contact, aborting.");
@@ -65,8 +61,7 @@ namespace Foundations
             attachOffset = Vector3.zero;            
             attachRotation = transform.rotation;
             isAttached = true;
-            Debug.Log("Foundation: rotation:");
-            Debug.Log(Convert.ToString(attachRotation));            
+            
             CreateAttachment();
         }
 
@@ -102,8 +97,7 @@ namespace Foundations
             {
                 return;
             }
-
-            //attachOffset = Vector3.op_Subtraction(this.fixedObject.get_transform().get_position(), ((Component)this.get_part()).get_transform().get_position());
+                        
             Vector3 attachOffset = (fixedObject.transform.position - part.transform.position);
         }
 
@@ -133,29 +127,23 @@ namespace Foundations
                         
             fixedJoint.breakForce = breakForce;
             fixedJoint.breakTorque = breakTorque;
-
-            //fixedJoint.connectedBody(this.fixedObject.get_rigidbody());
+                        
             fixedJoint.connectedBody = fixedObject.GetComponent<Rigidbody>();
         }
 
         private void DestroyAttachment()
         {
             Debug.Log("Foundations: DestroyAttachment()");
-
-            //if (Object.op_Inequality((Object)this.fixedJoint, (Object)null))
+                        
             if (fixedJoint != null)
             {
-                Debug.Log((object)"Foundations: Destroying joint.");
+                Debug.Log("Foundations: Destroying joint.");
 
                 Destroy(fixedJoint);
 
                 fixedJoint = null;
             }
-            //else
-            //{
-            //    return;
-            //}
-                        
+                                    
             if (fixedObject != null)
             {
                 Debug.Log("Foundations: Destroying object.");
@@ -172,7 +160,7 @@ namespace Foundations
 
         private void Message(string format, params object[] args)
         {
-            ScreenMessages.PostScreenMessage(string.Format(format, args), 3f, (ScreenMessageStyle)0);
+            ScreenMessages.PostScreenMessage(string.Format(format, args), 3f, 0);
         }
 
         public Foundation()
